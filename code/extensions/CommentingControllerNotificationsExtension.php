@@ -22,7 +22,8 @@ class CommentingControllerNotificationsExtension extends Extension {
 		
 		// Generate email
 		$email = new Email();
-		$email->setSubject(Config::inst()->get('CommentsNotifications', 'email_subject'));
+		$sitename = $subject = SiteConfig::current_site_config()->Title.' - ';
+		$email->setSubject($sitename.Config::inst()->get('CommentsNotifications', 'email_subject'));
 		$email->setTo($recipient);
 		$email->setTemplate(Config::inst()->get('CommentsNotifications', 'email_template'));
 		$email->populateTemplate($comment);
